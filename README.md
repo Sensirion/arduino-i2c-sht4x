@@ -3,11 +3,10 @@
 This is the Sensirion SHT4X library for Arduino using the
 modules I2C interface.
 
-TODO: DRIVER_GENERATOR Add image of sensor / eval kit as images/sht4x.jpg
-[<center><img src="images/sht4x.jpg" width="300px"></center>](TODO: DRIVER_GENERATOR add url to the eval kit)
+[<center><img src="images/sht4x.png" width="300px"></center>](https://www.sensirion.com/sht4x)
 
-Click [here](TODO: DRIVER_GENERATOR Add url to the eval kit) to learn more about the SHT4X
-sensor and the SHT4X Evaluation Kit Board.
+Click [here](https://www.sensirion.com/sht4x) to learn more about the SHT4X
+sensor and Evaluation Kit.
 
 
 # Installation
@@ -34,11 +33,10 @@ Note: Installation via the Arduino Library Manager is coming soon.
    The pinout of the SHT4X Sensor board can be found in the
    data sheet.
 
-	* **VDD** of the SEK-SHT4X to the **xV** of your Arduino board TODO: DRIVER_GENERATOR Add correct voltage
+	* **VDD** of the SEK-SHT4X to the **3.3V** of your Arduino board
 	* **GND** of the SEK-SHT4X to the **GND** of your Arduino board
 	* **SCL** of the SEK-SHT4X to the **SCL** of your Arduino board
 	* **SDA** of the SEK-SHT4X to the **SDA** of your Arduino board
-	* **SEL** of the SEK-SHT4X to another **GND** of your Arduino board
 
 2. Open the `exampleUsage` sample project within the Arduino IDE
 
