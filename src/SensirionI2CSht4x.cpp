@@ -82,6 +82,22 @@ SensirionI2CSht4x::measureHighPrecisionTicks(uint16_t& temperatureTicks,
     return error;
 }
 
+uint16_t SensirionI2CSht4x::measureHighPrecision(float& temperature,
+                                                 float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error = measureHighPrecisionTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
+}
+
 uint16_t
 SensirionI2CSht4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks,
                                                uint16_t& humidityTicks) {
@@ -112,6 +128,22 @@ SensirionI2CSht4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks,
     error |= rxFrame.getUInt16(temperatureTicks);
     error |= rxFrame.getUInt16(humidityTicks);
     return error;
+}
+
+uint16_t SensirionI2CSht4x::measureMediumPrecision(float& temperature,
+                                                   float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error = measureMediumPrecisionTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
 }
 
 uint16_t
@@ -146,6 +178,22 @@ SensirionI2CSht4x::measureLowestPrecisionTicks(uint16_t& temperatureTicks,
     return error;
 }
 
+uint16_t SensirionI2CSht4x::measureLowestPrecision(float& temperature,
+                                                   float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error = measureLowestPrecisionTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
+}
+
 uint16_t SensirionI2CSht4x::activateHighestHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
@@ -175,6 +223,23 @@ uint16_t SensirionI2CSht4x::activateHighestHeaterPowerLongTicks(
     error |= rxFrame.getUInt16(temperatureTicks);
     error |= rxFrame.getUInt16(humidityTicks);
     return error;
+}
+
+uint16_t SensirionI2CSht4x::activateHighestHeaterPowerLong(float& temperature,
+                                                           float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error =
+        activateHighestHeaterPowerLongTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
 }
 
 uint16_t SensirionI2CSht4x::activateHighestHeaterPowerShortTicks(
@@ -208,6 +273,23 @@ uint16_t SensirionI2CSht4x::activateHighestHeaterPowerShortTicks(
     return error;
 }
 
+uint16_t SensirionI2CSht4x::activateHighestHeaterPowerShort(float& temperature,
+                                                            float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error =
+        activateHighestHeaterPowerShortTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
+}
+
 uint16_t SensirionI2CSht4x::activateMediumHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
@@ -237,6 +319,22 @@ uint16_t SensirionI2CSht4x::activateMediumHeaterPowerLongTicks(
     error |= rxFrame.getUInt16(temperatureTicks);
     error |= rxFrame.getUInt16(humidityTicks);
     return error;
+}
+
+uint16_t SensirionI2CSht4x::activateMediumHeaterPowerLong(float& temperature,
+                                                          float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error = activateMediumHeaterPowerLongTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
 }
 
 uint16_t SensirionI2CSht4x::activateMediumHeaterPowerShortTicks(
@@ -270,6 +368,23 @@ uint16_t SensirionI2CSht4x::activateMediumHeaterPowerShortTicks(
     return error;
 }
 
+uint16_t SensirionI2CSht4x::activateMediumHeaterPowerShort(float& temperature,
+                                                           float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error =
+        activateMediumHeaterPowerShortTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
+}
+
 uint16_t SensirionI2CSht4x::activateLowestHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
@@ -301,6 +416,22 @@ uint16_t SensirionI2CSht4x::activateLowestHeaterPowerLongTicks(
     return error;
 }
 
+uint16_t SensirionI2CSht4x::activateLowestHeaterPowerLong(float& temperature,
+                                                          float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error = activateLowestHeaterPowerLongTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
+}
+
 uint16_t SensirionI2CSht4x::activateLowestHeaterPowerShortTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
@@ -330,6 +461,23 @@ uint16_t SensirionI2CSht4x::activateLowestHeaterPowerShortTicks(
     error |= rxFrame.getUInt16(temperatureTicks);
     error |= rxFrame.getUInt16(humidityTicks);
     return error;
+}
+
+uint16_t SensirionI2CSht4x::activateLowestHeaterPowerShort(float& temperature,
+                                                           float& humidity) {
+    uint16_t error;
+    uint16_t temperatureTicks;
+    uint16_t humidityTicks;
+
+    error =
+        activateLowestHeaterPowerShortTicks(temperatureTicks, humidityTicks);
+    if (error) {
+        return error;
+    }
+
+    temperature = _convertTicksToCelsius(temperatureTicks);
+    humidity = _convertTicksToPercentRH(humidityTicks);
+    return NoError;
 }
 
 uint16_t SensirionI2CSht4x::serialNumber(uint32_t& serialNumber) {
@@ -375,4 +523,12 @@ uint16_t SensirionI2CSht4x::softReset() {
                                                  *_i2cBus);
     delay(10);
     return error;
+}
+
+float SensirionI2CSht4x::_convertTicksToCelsius(uint16_t ticks) {
+    return static_cast<float>(ticks * 175.0 / 65535.0 - 45.0);
+}
+
+float SensirionI2CSht4x::_convertTicksToPercentRH(uint16_t ticks) {
+    return static_cast<float>(ticks * 125.0 / 65535.0 - 6);
 }

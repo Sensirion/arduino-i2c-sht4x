@@ -20,6 +20,15 @@ activateMediumHeaterPowerLongTicks	KEYWORD2
 activateMediumHeaterPowerShortTicks	KEYWORD2
 activateLowestHeaterPowerLongTicks	KEYWORD2
 activateLowestHeaterPowerShortTicks	KEYWORD2
+measureHighPrecision	KEYWORD2
+measureMediumPrecision	KEYWORD2
+measureLowestPrecision	KEYWORD2
+activateHighestHeaterPowerLong	KEYWORD2
+activateHighestHeaterPowerShort	KEYWORD2
+activateMediumHeaterPowerLong	KEYWORD2
+activateMediumHeaterPowerShort	KEYWORD2
+activateLowestHeaterPowerLong	KEYWORD2
+activateLowestHeaterPowerShort	KEYWORD2
 serialNumber	KEYWORD2
 softReset	KEYWORD2
 #######################################

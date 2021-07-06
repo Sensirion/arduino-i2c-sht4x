@@ -71,6 +71,18 @@ class SensirionI2CSht4x {
                                        uint16_t& humidityTicks);
 
     /**
+     * measureHighPrecision() - SHT4x command for a single shot
+     * measurement with high repeatability.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t measureHighPrecision(float& temperature, float& humidity);
+
+    /**
      * measureMediumPrecisionTicks() - SHT4x command for a single shot
      * measurement with medium repeatability.
      *
@@ -84,6 +96,18 @@ class SensirionI2CSht4x {
      */
     uint16_t measureMediumPrecisionTicks(uint16_t& temperatureTicks,
                                          uint16_t& humidityTicks);
+
+    /**
+     * measureMediumPrecision() - SHT4x command for a single shot
+     * measurement with medium repeatability.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t measureMediumPrecision(float& temperature, float& humidity);
 
     /**
      * measureLowestPrecisionTicks() - SHT4x command for a single shot
@@ -101,6 +125,18 @@ class SensirionI2CSht4x {
                                          uint16_t& humidityTicks);
 
     /**
+     * measureLowestPrecision() - SHT4x command for a single shot
+     * measurement with lowest repeatability.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t measureLowestPrecision(float& temperature, float& humidity);
+
+    /**
      * activateHighestHeaterPowerLongTicks() - SHT4x command to activate highest
      * heater power and perform a single shot high precision measurement for 1s.
      *
@@ -114,6 +150,19 @@ class SensirionI2CSht4x {
      */
     uint16_t activateHighestHeaterPowerLongTicks(uint16_t& temperatureTicks,
                                                  uint16_t& humidityTicks);
+
+    /**
+     * activateHighestHeaterPowerLong() - SHT4x command to activate highest
+     * heater power and perform a single shot high precision measurement for 1s.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t activateHighestHeaterPowerLong(float& temperature,
+                                            float& humidity);
 
     /**
      * activateHighestHeaterPowerShortTicks() - SHT4x command to activate
@@ -132,6 +181,20 @@ class SensirionI2CSht4x {
                                                   uint16_t& humidityTicks);
 
     /**
+     * activateHighestHeaterPowerShort() - SHT4x command to activate highest
+     * heater power and perform a single shot high precision measurement for
+     * 0.1s.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t activateHighestHeaterPowerShort(float& temperature,
+                                             float& humidity);
+
+    /**
      * activateMediumHeaterPowerLongTicks() - SHT4x command to activate medium
      * heater power and perform a single shot high precision measurement for 1s.
      *
@@ -145,6 +208,18 @@ class SensirionI2CSht4x {
      */
     uint16_t activateMediumHeaterPowerLongTicks(uint16_t& temperatureTicks,
                                                 uint16_t& humidityTicks);
+
+    /**
+     * activateMediumHeaterPowerLong() - SHT4x command to activate medium
+     * heater power and perform a single shot high precision measurement for 1s.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t activateMediumHeaterPowerLong(float& temperature, float& humidity);
 
     /**
      * activateMediumHeaterPowerShortTicks() - SHT4x command to activate medium
@@ -163,6 +238,20 @@ class SensirionI2CSht4x {
                                                  uint16_t& humidityTicks);
 
     /**
+     * activateMediumHeaterPowerShort() - SHT4x command to activate medium
+     * heater power and perform a single shot high precision measurement for
+     * 0.1s.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t activateMediumHeaterPowerShort(float& temperature,
+                                            float& humidity);
+
+    /**
      * activateLowestHeaterPowerLongTicks() - SHT4x command to activate lowest
      * heater power and perform a single shot high precision measurement for 1s.
      *
@@ -176,6 +265,18 @@ class SensirionI2CSht4x {
      */
     uint16_t activateLowestHeaterPowerLongTicks(uint16_t& temperatureTicks,
                                                 uint16_t& humidityTicks);
+
+    /**
+     * activateLowestHeaterPowerLong() - SHT4x command to activate lowest
+     * heater power and perform a single shot high precision measurement for 1s.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t activateLowestHeaterPowerLong(float& temperature, float& humidity);
 
     /**
      * activateLowestHeaterPowerShortTicks() - SHT4x command to activate lowest
@@ -192,6 +293,20 @@ class SensirionI2CSht4x {
      */
     uint16_t activateLowestHeaterPowerShortTicks(uint16_t& temperatureTicks,
                                                  uint16_t& humidityTicks);
+
+    /**
+     * activateLowestHeaterPowerShort() - SHT4x command to activate lowest
+     * heater power and perform a single shot high precision measurement for
+     * 0.1s.
+     *
+     * @param temperature Temperature in degrees celsius.
+     *
+     * @param humidity Humidity in percent relative humidity.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t activateLowestHeaterPowerShort(float& temperature,
+                                            float& humidity);
 
     /**
      * serialNumber() - Read out the serial number
@@ -221,6 +336,8 @@ class SensirionI2CSht4x {
 
   private:
     TwoWire* _i2cBus = nullptr;
+    float _convertTicksToCelsius(uint16_t ticks);
+    float _convertTicksToPercentRH(uint16_t ticks);
 };
 
 #endif /* SENSIRIONI2CSHT4X_H */
