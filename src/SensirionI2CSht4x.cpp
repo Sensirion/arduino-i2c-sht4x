@@ -55,12 +55,8 @@ SensirionI2CSht4x::measureHighPrecisionTicks(uint16_t& temperatureTicks,
                                              uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0xFD);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0xFD, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -103,12 +99,8 @@ SensirionI2CSht4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks,
                                                uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0xF6);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0xF6, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -151,12 +143,8 @@ SensirionI2CSht4x::measureLowestPrecisionTicks(uint16_t& temperatureTicks,
                                                uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0xE0);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0xE0, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -198,12 +186,8 @@ uint16_t SensirionI2CSht4x::activateHighestHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0x39);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x39, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -246,12 +230,8 @@ uint16_t SensirionI2CSht4x::activateHighestHeaterPowerShortTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0x32);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x32, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -294,12 +274,8 @@ uint16_t SensirionI2CSht4x::activateMediumHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0x2F);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x2F, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -341,12 +317,8 @@ uint16_t SensirionI2CSht4x::activateMediumHeaterPowerShortTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0x24);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x24, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -389,12 +361,8 @@ uint16_t SensirionI2CSht4x::activateLowestHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0x1E);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x1E, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -436,12 +404,8 @@ uint16_t SensirionI2CSht4x::activateLowestHeaterPowerShortTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0x15);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x15, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -483,12 +447,8 @@ uint16_t SensirionI2CSht4x::activateLowestHeaterPowerShort(float& temperature,
 uint16_t SensirionI2CSht4x::serialNumber(uint32_t& serialNumber) {
     uint16_t error;
     uint8_t buffer[6];
-    SensirionI2CTxFrame txFrame(buffer, 6);
-
-    error = txFrame.addCommand(0x89);
-    if (error) {
-        return error;
-    }
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x89, buffer, 6);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
@@ -511,13 +471,9 @@ uint16_t SensirionI2CSht4x::serialNumber(uint32_t& serialNumber) {
 
 uint16_t SensirionI2CSht4x::softReset() {
     uint16_t error;
-    uint8_t buffer[2];
-    SensirionI2CTxFrame txFrame(buffer, 2);
-
-    error = txFrame.addCommand(0x94);
-    if (error) {
-        return error;
-    }
+    uint8_t buffer[1];
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(0x94, buffer, 1);
 
     error = SensirionI2CCommunication::sendFrame(SHT4X_I2C_ADDRESS, txFrame,
                                                  *_i2cBus);
