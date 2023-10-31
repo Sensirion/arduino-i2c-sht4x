@@ -56,10 +56,9 @@ Use the following pin description to connect your SHT4X to the standard I²C bus
 | 3 | yellow | SCL | I2C: Serial clock input | 
 | 4 | red | VDD | Supply Voltage | 1.1V to 3.6V
 
-
-
-
 The recommended voltage is 3.3V.
+
+Please refer to the datasheet for proper circuit setup. There are 3rd party boards for easy connection of the SHT4x sensor to your Arduino Board.
 
 ### Board specific wiring
 You will find pinout schematics for recommended board models below:
