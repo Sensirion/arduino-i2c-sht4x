@@ -36,10 +36,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include <Arduino.h>
-#include <SensirionI2cSht4x.h>
+#include <SensirionI2CSht4x.h>
 #include <Wire.h>
 
-SensirionI2cSht4x sensor;
+SensirionI2CSht4x sensor;
 
 static char errorMessage[64];
 static int16_t error;
