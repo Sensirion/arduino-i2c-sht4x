@@ -3,6 +3,6 @@ model_version: 2.1.1
 dg_status:
 - ''
 - RELEASED
-is_manually_modified: false
+is_manually_modified: yes
 first_generated: '2021-07-06 15:05'
 last_generated: '2024-04-11 14:10'

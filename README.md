@@ -61,6 +61,8 @@ Use the following pin description to connect your SHT4X to the standard I²C bus
 
 The recommended voltage is 3.3V.
 
+Please refer to the datasheet for proper circuit setup. There are 3rd party boards for easy connection of the SHT4x sensor to your Arduino Board.
+
 ### Board specific wiring
 You will find pinout schematics for recommended board models below:
 
@@ -173,7 +175,7 @@ You will find pinout schematics for recommended board models below:
 
    The provided example is working with a SHT40, I²C address 0x44.
    In order to use the code with another product or I²C address you need to change it in the code of `examples/exampleUsage`.
-   You find the list with pre-defined addresses in `src/SensirionI2CSHT4X.h`.
+   You find the list with pre-defined addresses in `src/SensirionI2cSht4X.h`.
 
 
 5. Click the `Upload` button in the Arduino IDE or `Sketch` ➔ `Upload`
