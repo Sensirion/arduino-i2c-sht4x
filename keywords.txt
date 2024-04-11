@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-SensirionI2CSht4x	KEYWORD1
+SensirionI2cSht4x	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

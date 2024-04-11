@@ -1,6 +1,6 @@
 # Sensirion I²C SHT4X Arduino Library
 
-This is the Sensirion SHT4X library for Arduino allowing you to 
+This is the Sensirion SHT4X library for Arduino allowing you to
 communicate with a sensor of the SHT4X family over I²C.
 
 <img src="images/SHT4x.png" width="300px">
@@ -32,12 +32,12 @@ the Library Manager via
 Search for the `Sensirion I2C SHT4X` library in the `Filter
 your search...` field and install it by clicking the `install` button.
 
-If you cannot find it in the library manager, download the latest release as .zip file 
+If you cannot find it in the library manager, download the latest release as .zip file
 and add it to your [Arduino IDE](http://www.arduino.cc/en/main/software) via
 
 `Sketch` ➔ `Include Library` ➔ `Add .ZIP Library...`
 
-Don't forget to **install the dependencies** listed below the same way via library 
+Don't forget to **install the dependencies** listed below the same way via library
 manager or `Add .ZIP Library`
 
 #### Dependencies
@@ -51,10 +51,13 @@ Use the following pin description to connect your SHT4X to the standard I²C bus
 
 | *Pin* | *Cable Color* | *Name* | *Description*  | *Comments* |
 |-------|---------------|:------:|----------------|------------|
-| 1 | green | SDA | I2C: Serial data input / output | 
-| 2 | black | GND | Ground | 
-| 3 | yellow | SCL | I2C: Serial clock input | 
+| 1 | green | SDA | I2C: Serial data input / output |
+| 2 | black | GND | Ground |
+| 3 | yellow | SCL | I2C: Serial clock input |
 | 4 | red | VDD | Supply Voltage | 1.1V to 3.6V
+
+
+
 
 The recommended voltage is 3.3V.
 
@@ -83,6 +86,7 @@ You will find pinout schematics for recommended board models below:
 
 
 
+
 <details><summary>Arduino Nano</summary>
 <p>
 
@@ -98,6 +102,7 @@ You will find pinout schematics for recommended board models below:
 <img src="images/Arduino-Nano-i2c-pinout-3.3V.png" width="600px">
 </p>
 </details>
+
 
 
 
@@ -119,6 +124,7 @@ You will find pinout schematics for recommended board models below:
 
 
 
+
 <details><summary>Arduino Mega 2560</summary>
 <p>
 
@@ -134,6 +140,7 @@ You will find pinout schematics for recommended board models below:
 <img src="images/Arduino-Mega-2560-Rev3-i2c-pinout-3.3V.png" width="600px">
 </p>
 </details>
+
 
 
 
@@ -154,6 +161,7 @@ You will find pinout schematics for recommended board models below:
 </details>
 
 
+
 ## Quick Start
 
 1. Install the libraries and dependencies according to [Installation of the library](#installation-of-the-library)
@@ -164,10 +172,10 @@ You will find pinout schematics for recommended board models below:
 
    `File` ➔ `Examples` ➔ `Sensirion I2C SHT4X` ➔ `exampleUsage`
 
-  
+
    The provided example is working with a SHT40, I²C address 0x44.
-   In order to use the code with another product or I²C address you need to change it in the code of `exampleUsage`. 
-   You find the list with pre-defined addresses in `src/SensirionI2CSht4x.h`.
+   In order to use the code with another product or I²C address you need to change it in the code of `examples/exampleUsage`.
+   You find the list with pre-defined addresses in `src/SensirionI2cSht4X.h`.
 
 
 5. Click the `Upload` button in the Arduino IDE or `Sketch` ➔ `Upload`
@@ -199,7 +207,7 @@ clang-format -i src/*.cpp src/*.h
 
 Note that differences from this formatting will result in a failed build until
 they are fixed.
-
+:
 
 ## License
 

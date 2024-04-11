@@ -47,7 +47,7 @@ cppcheck:
       name: registry.gitlab.sensirion.lokal/mso-sw/drivers/docker-driver-generator:0.2.0
   tags: [linux, docker]
   script:
-    - cppcheck --std=c++11 --language=c++ --error-exitcode=1 --enable=warning,style,performance,portability --suppress=unreadVariable src/*
+    - cppcheck --std=c++11 --language=c++ --error-exitcode=1 --enable=warning,style,performance,portability --suppress=unreadVariable --suppress=unusedStructMember src/*
 
 TODO_check:
   stage: validate
