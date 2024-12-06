@@ -5,11 +5,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] 
 
+## [1.1.1] - 2024-12-05
+
+- Compatibility header for old name SensirionI2CSht4x
+
 ## [1.1.0] - 2024-4-10
 
-### Fixed
+### Changed
+- Naming updated: SensirionI2CSht4x is now SensirionI2cSht4x (note case change for I2c)
 
+### Fixed
 - Fix colliding definitions with other Sensirion sensor drivers
+
+
 ## [1.0.0] - 2024-3-14
 
 ### Changed
