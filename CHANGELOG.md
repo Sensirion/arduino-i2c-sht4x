@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] 
 
+## [1.1.2] - 2024-12-16
+
+- Remove compatibility header for old name of driver class, as it breaks on non-case-sensitive systems
+
 ## [1.1.1] - 2024-12-05
 
 - Compatibility header for old name SensirionI2CSht4x
