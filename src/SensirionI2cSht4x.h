@@ -36,9 +36,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#pragma once
+
 #ifndef SENSIRIONI2CSHT4X_H
 #define SENSIRIONI2CSHT4X_H
 
+#include <SensirionErrors.h>
 #include <Wire.h>
 
 static constexpr uint8_t SHT40_I2C_ADDR_44 = 0x44;
