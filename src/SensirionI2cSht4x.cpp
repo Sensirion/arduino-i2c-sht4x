@@ -45,8 +45,6 @@
 #endif
 #define NO_ERROR 0
 
-static uint8_t communication_buffer[6] = {0};
-
 SensirionI2cSht4x::SensirionI2cSht4x() {
 }
 
@@ -192,6 +190,9 @@ int16_t SensirionI2cSht4x::activateLowestHeaterPowerShort(float& aTemperature,
 
 int16_t SensirionI2cSht4x::measureHighPrecisionTicks(uint16_t& temperatureTicks,
                                                      uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -216,6 +217,9 @@ int16_t SensirionI2cSht4x::measureHighPrecisionTicks(uint16_t& temperatureTicks,
 int16_t
 SensirionI2cSht4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks,
                                                uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -240,6 +244,9 @@ SensirionI2cSht4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks,
 int16_t
 SensirionI2cSht4x::measureLowestPrecisionTicks(uint16_t& temperatureTicks,
                                                uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -263,6 +270,9 @@ SensirionI2cSht4x::measureLowestPrecisionTicks(uint16_t& temperatureTicks,
 
 int16_t SensirionI2cSht4x::activateHighestHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -286,6 +296,9 @@ int16_t SensirionI2cSht4x::activateHighestHeaterPowerLongTicks(
 
 int16_t SensirionI2cSht4x::activateHighestHeaterPowerShortTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -309,6 +322,9 @@ int16_t SensirionI2cSht4x::activateHighestHeaterPowerShortTicks(
 
 int16_t SensirionI2cSht4x::activateMediumHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -332,6 +348,9 @@ int16_t SensirionI2cSht4x::activateMediumHeaterPowerLongTicks(
 
 int16_t SensirionI2cSht4x::activateMediumHeaterPowerShortTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -355,6 +374,9 @@ int16_t SensirionI2cSht4x::activateMediumHeaterPowerShortTicks(
 
 int16_t SensirionI2cSht4x::activateLowestHeaterPowerLongTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -378,6 +400,9 @@ int16_t SensirionI2cSht4x::activateLowestHeaterPowerLongTicks(
 
 int16_t SensirionI2cSht4x::activateLowestHeaterPowerShortTicks(
     uint16_t& temperatureTicks, uint16_t& humidityTicks) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -400,6 +425,9 @@ int16_t SensirionI2cSht4x::activateLowestHeaterPowerShortTicks(
 }
 
 int16_t SensirionI2cSht4x::serialNumber(uint32_t& serialNumber) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -421,6 +449,9 @@ int16_t SensirionI2cSht4x::serialNumber(uint32_t& serialNumber) {
 }
 
 int16_t SensirionI2cSht4x::softReset() {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
@@ -431,10 +462,120 @@ int16_t SensirionI2cSht4x::softReset() {
         return localError;
     }
     delay(10);
+    _measurementInProgress = false;  // Clear async state since sensor reset
+    return localError;
+}
+
+int16_t SensirionI2cSht4x::asyncStartMeasurement(SHT4xMeasurementMode mode) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
+    if (_measurementInProgress) {
+        return -1;  // Error: measurement already in progress
+    }
+    // Map measurement mode to command ID and duration
+    uint8_t cmdId;
+    uint16_t durationMs;
+    switch (mode) {
+        // Non-heated measurements
+        case SHT4X_PRECISION_HIGH:
+            cmdId = 0xfd;
+            durationMs = 10;
+            break;
+        case SHT4X_PRECISION_MEDIUM:
+            cmdId = 0xf6;
+            durationMs = 5;
+            break;
+        case SHT4X_PRECISION_LOWEST:
+            cmdId = 0xe0;
+            durationMs = 2;
+            break;
+        // Heated measurements
+        case SHT4X_HEATER_HIGHEST_LONG:
+            cmdId = 0x39;
+            durationMs = 1100;
+            break;
+        case SHT4X_HEATER_HIGHEST_SHORT:
+            cmdId = 0x32;
+            durationMs = 110;
+            break;
+        case SHT4X_HEATER_MEDIUM_LONG:
+            cmdId = 0x2f;
+            durationMs = 1100;
+            break;
+        case SHT4X_HEATER_MEDIUM_SHORT:
+            cmdId = 0x24;
+            durationMs = 110;
+            break;
+        case SHT4X_HEATER_LOWEST_LONG:
+            cmdId = 0x1e;
+            durationMs = 1100;
+            break;
+        case SHT4X_HEATER_LOWEST_SHORT:
+            cmdId = 0x15;
+            durationMs = 110;
+            break;
+        default:
+            return -1;  // Invalid mode
+    }
+    // Send the command to start measurement
+    int16_t localError = NO_ERROR;
+    uint8_t* buffer_ptr = communication_buffer;
+    SensirionI2CTxFrame txFrame =
+        SensirionI2CTxFrame::createWithUInt8Command(cmdId, buffer_ptr, 6);
+    localError =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
+    if (localError != NO_ERROR) {
+        _measurementInProgress = false;
+        return localError;
+    }
+    // Track state for non-blocking operation
+    _measurementStartTime = millis();
+    _measurementDurationMs = durationMs;
+    _measurementInProgress = true;
+    return NO_ERROR;
+}
+
+bool SensirionI2cSht4x::asyncIsMeasurementReady() {
+    if (!_measurementInProgress || _i2cBus == nullptr) {
+        return false;
+    }
+    unsigned long elapsed = millis() - _measurementStartTime;
+    return (elapsed >= _measurementDurationMs);
+}
+
+int16_t SensirionI2cSht4x::asyncReadMeasurement(float& aTemperature,
+                                                float& aHumidity) {
+    if (_i2cBus == nullptr) {
+        return -1;
+    }
+    if (!_measurementInProgress) {
+        return -1;  // No measurement was started
+    }
+    // Read the results from the sensor
+    int16_t localError = NO_ERROR;
+    uint8_t* buffer_ptr = communication_buffer;
+    SensirionI2CRxFrame rxFrame(buffer_ptr, 6);
+    localError = SensirionI2CCommunication::receiveFrame(_i2cAddress, 6,
+                                                         rxFrame, *_i2cBus);
+    if (localError != NO_ERROR) {
+        _measurementInProgress = false;
+        return localError;
+    }
+    uint16_t temperatureTicks = 0;
+    uint16_t humidityTicks = 0;
+    localError |= rxFrame.getUInt16(temperatureTicks);
+    localError |= rxFrame.getUInt16(humidityTicks);
+    if (localError == NO_ERROR) {
+        aTemperature = SensirionI2cSht4x::signalTemperature(temperatureTicks);
+        aHumidity = SensirionI2cSht4x::signalHumidity(humidityTicks);
+    }
+    _measurementInProgress = false;
     return localError;
 }
 
 void SensirionI2cSht4x::begin(TwoWire& i2cBus, uint8_t i2cAddress) {
     _i2cBus = &i2cBus;
     _i2cAddress = i2cAddress;
+    _measurementInProgress = false;  // Clear async state if re-initialized
 }

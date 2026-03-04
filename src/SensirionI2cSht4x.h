@@ -63,6 +63,20 @@ typedef enum {
     SHT4X_SOFT_RESET_CMD_ID = 0x94,
 } SHT4xCmdId;
 
+typedef enum {
+    // Non-heated measurements
+    SHT4X_PRECISION_HIGH = 10,       // High precision, no heater (~10ms)
+    SHT4X_PRECISION_MEDIUM = 11,     // Medium precision, no heater (~5ms)
+    SHT4X_PRECISION_LOWEST = 12,     // Lowest precision, no heater (~2ms)
+    // Heated measurements
+    SHT4X_HEATER_HIGHEST_LONG = 0,   // 200mW for 1 second
+    SHT4X_HEATER_HIGHEST_SHORT = 1,  // 200mW for 0.1 second
+    SHT4X_HEATER_MEDIUM_LONG = 2,    // 110mW for 1 second
+    SHT4X_HEATER_MEDIUM_SHORT = 3,   // 110mW for 0.1 second
+    SHT4X_HEATER_LOWEST_LONG = 4,    // 20mW for 1 second
+    SHT4X_HEATER_LOWEST_SHORT = 5,   // 20mW for 0.1 second
+} SHT4xMeasurementMode;
+
 class SensirionI2cSht4x {
   public:
     SensirionI2cSht4x();
@@ -397,6 +411,56 @@ class SensirionI2cSht4x {
     int16_t softReset();
 
     /**
+     * @brief Start a non-blocking measurement
+     *
+     * Initiates a measurement with or without the heater. For heater modes,
+     * the sensor heater will activate and remain on for the specified duration.
+     * You must call asyncIsMeasurementReady() to check if the measurement is
+     * complete, then asyncReadMeasurement() to retrieve the results.
+     *
+     * @param[in] mode Measurement mode - can be a precision level
+     * (SHT4X_PRECISION_HIGH, SHT4X_PRECISION_MEDIUM, SHT4X_PRECISION_LOWEST)
+     * or a heater mode (SHT4X_HEATER_*)
+     *
+     * @return error_code 0 on success, an error code otherwise.
+     *
+     * @note This is a non-blocking alternative to the synchronous measurement
+     * and activate*HeaterPower* functions. Use this for applications that need
+     * to perform other tasks during the measurement.
+     */
+    int16_t asyncStartMeasurement(SHT4xMeasurementMode mode);
+
+    /**
+     * @brief Check if a non-blocking measurement is ready
+     *
+     * Call this after asyncStartMeasurement() to check if enough time has
+     * elapsed for the measurement to complete.
+     *
+     * @return true if measurement is ready to be read, false otherwise
+     *
+     * @note Returns false if no measurement was started or if the sensor is
+     * not initialized.
+     */
+    bool asyncIsMeasurementReady();
+
+    /**
+     * @brief Read results from a non-blocking measurement
+     *
+     * Reads the temperature and humidity results after a non-blocking
+     * measurement started with asyncStartMeasurement(). You must call
+     * asyncIsMeasurementReady() first to ensure the measurement is complete.
+     *
+     * @param[out] aTemperature Temperature in degrees celsius
+     * @param[out] aHumidity Relative humidity in percent
+     *
+     * @return error_code 0 on success, an error code otherwise.
+     *
+     * @note If called before the measurement is ready, may return stale or
+     * invalid data from the sensor.
+     */
+    int16_t asyncReadMeasurement(float& aTemperature, float& aHumidity);
+
+    /**
      * @brief signalTemperature
      *
      * @param[in] temperatureTicks
@@ -419,6 +483,12 @@ class SensirionI2cSht4x {
   private:
     TwoWire* _i2cBus = nullptr;
     uint8_t _i2cAddress = 0;
+    uint8_t communication_buffer[6] = {0};
+    
+    // State tracking for non-blocking measurements
+    unsigned long _measurementStartTime = 0;
+    uint16_t _measurementDurationMs = 0;
+    bool _measurementInProgress = false;
 };
 
 #endif  // SENSIRIONI2CSHT4X_H
