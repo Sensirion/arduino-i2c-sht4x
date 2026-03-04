@@ -5,6 +5,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] 
 
+## [1.2.0] - 2026-03-04
+
+### Fixed
+- Communication buffer no longer global; now a private member variable to prevent shared state between instances
+- Added validation to all I2C methods to prevent dereferencing null `_i2cBus` pointer
+
+### Added
+- Non-blocking async measurement API: `asyncStartMeasurement()`, `asyncIsMeasurementReady()`, `asyncReadMeasurement()`
+- `SHT4xMeasurementMode` enum for all measurement types (high/medium/low precision, heated variants)
+- New example: `asyncExampleUsage.ino` demonstrating non-blocking measurements
+
 ## [1.1.2] - 2024-12-16
 
 - Remove compatibility header for old name of driver class, as it breaks on non-case-sensitive systems
@@ -36,7 +47,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add interfaces to start, stop and read measurements.
 - Add interfaces to read product name, serial number and version
 
-[Unreleased]: https://github.com/Sensirion/arduino-i2c-sht4x/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/Sensirion/arduino-i2c-sht4x/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/Sensirion/arduino-i2c-sht4x/compare/1.1.2...1.2.0
+[1.1.2]: https://github.com/Sensirion/arduino-i2c-sht4x/compare/1.1.1...1.1.2
+[1.1.1]: https://github.com/Sensirion/arduino-i2c-sht4x/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/Sensirion/arduino-i2c-sht4x/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/Sensirion/arduino-i2c-sht4x/compare/0.1.0...1.0.0
 [0.1.0]: https://github.com/Sensirion/arduino-i2c-sht4x/releases/tag/0.1.0

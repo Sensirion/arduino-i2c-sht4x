@@ -162,7 +162,7 @@ You will find pinout schematics for recommended board models below:
 
 
 
-## Quick Start
+## Quick Start (Synchronous/Blocking API)
 
 1. Install the libraries and dependencies according to [Installation of the library](#installation-of-the-library)
 
@@ -183,6 +183,63 @@ You will find pinout schematics for recommended board models below:
 4. When the upload process has finished, open the `Serial Monitor` or `Serial
    Plotter` via the `Tools` menu to observe the measurement values. Note that
    the `Baud Rate` in the used tool has to be set to `115200 baud`.
+
+## Using the Asynchronous API
+
+1. Follow the same steps as the previous Quick Start section above, but instead open the `asyncExampleUsage` sample project.
+
+### Why Use an Asynchronous API?
+
+The original blocking API will prevent code execution for up to 1.1 seconds during heater operations. The asynchronous API allows your program to perform other tasks while waiting for measurements to complete, making your application more responsive and efficient.
+
+### How to Use the Asynchronous API
+
+The asynchronous API uses a simple three-step pattern:
+
+1. **Start the measurement** using `asyncStartMeasurement(mode)` with your desired measurement mode
+   - Returns immediately after sending the I²C command
+   - For heater modes, the sensor heater runs automatically
+   - Returns `-1` if a measurement is already in progress
+
+2. **Check if ready** using `asyncIsMeasurementReady()`
+   - Returns `true` when the measurement duration has elapsed
+   - Continue with your other tasks while this returns `false`
+
+3. **Read the results** using `asyncReadMeasurement(temperature, humidity)`
+   - Must be called after `asyncIsMeasurementReady()` returns `true`
+   - Returns `0` on success, `-1` if no measurement was started
+
+**Example:**
+```cpp
+// Start measurement
+sensor.asyncStartMeasurement(SHT4X_PRECISION_HIGH);
+
+// Do other work
+while (!sensor.asyncIsMeasurementReady()) {
+    // Your other tasks here
+}
+
+// Read results
+sensor.asyncReadMeasurement(temperature, humidity);
+```
+
+### Measurement Modes
+
+The following measurement modes are available for the asynchronous API:
+
+| Mode | Description | Duration |
+|------|-------------|----------|
+| `SHT4X_PRECISION_HIGH` | High precision, no heater | ~10ms |
+| `SHT4X_PRECISION_MEDIUM` | Medium precision, no heater | ~5ms |
+| `SHT4X_PRECISION_LOWEST` | Lowest precision, no heater | ~2ms |
+| `SHT4X_HEATER_HIGHEST_LONG` | High heating, long duration | ~1000ms |
+| `SHT4X_HEATER_HIGHEST_SHORT` | High heating, short duration | ~100ms |
+| `SHT4X_HEATER_MEDIUM_LONG` | Medium heating, long duration | ~1000ms |
+| `SHT4X_HEATER_MEDIUM_SHORT` | Medium heating, short duration | ~100ms |
+| `SHT4X_HEATER_LOWEST_LONG` | Low heating, long duration | ~1000ms |
+| `SHT4X_HEATER_LOWEST_SHORT` | Low heating, short duration | ~100ms |
+
+**Note:** The heater modes are generally used for removing condensation or in humid environments.  Read the manufacturer's data sheet for more information on proper use.
 
 ## Contributing
 
