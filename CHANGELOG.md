@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Communication buffer no longer global; now a private member variable to prevent shared state between instances
-- Added validation to all I2C methods to prevent dereferencing null `_i2cBus` pointer
 
 ### Added
 - Non-blocking async measurement API: `asyncStartMeasurement()`, `asyncIsMeasurementReady()`, `asyncReadMeasurement()`
