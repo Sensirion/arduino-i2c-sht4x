@@ -393,7 +393,7 @@ class SensirionI2cSht4x {
      * @param[in] temperatureTicks
      *
      * @return Converted from ticks to degrees celsius by
-     * (175 * ticks_value / * 65535) - 45
+     * (175 * ticks_value / 65535) - 45
      */
     static float signalTemperature(uint16_t temperatureTicks);
 
