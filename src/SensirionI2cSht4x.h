@@ -49,7 +49,7 @@ constexpr uint8_t SHT45_I2C_ADDR_44 = 0x44;
 constexpr uint8_t SHT45_I2C_ADDR_45 = 0x45;
 
 class SensirionI2cSht4x {
-    typedef typeof(Wire) TwoWire;
+    using TwoWire = decltype(Wire);
   public:
     SensirionI2cSht4x();
     /**
