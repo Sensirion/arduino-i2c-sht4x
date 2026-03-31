@@ -41,12 +41,12 @@
 #include <SensirionErrors.h>
 #include <Wire.h>
 
-static constexpr uint8_t SHT40_I2C_ADDR_44 = 0x44;
-static constexpr uint8_t SHT40_I2C_ADDR_45 = 0x45;
-static constexpr uint8_t SHT41_I2C_ADDR_44 = 0x44;
-static constexpr uint8_t SHT41_I2C_ADDR_45 = 0x45;
-static constexpr uint8_t SHT45_I2C_ADDR_44 = 0x44;
-static constexpr uint8_t SHT45_I2C_ADDR_45 = 0x45;
+constexpr uint8_t SHT40_I2C_ADDR_44 = 0x44;
+constexpr uint8_t SHT40_I2C_ADDR_45 = 0x45;
+constexpr uint8_t SHT41_I2C_ADDR_44 = 0x44;
+constexpr uint8_t SHT41_I2C_ADDR_45 = 0x45;
+constexpr uint8_t SHT45_I2C_ADDR_44 = 0x44;
+constexpr uint8_t SHT45_I2C_ADDR_45 = 0x45;
 
 class SensirionI2cSht4x {
     typedef typeof(Wire) TwoWire;
