@@ -38,9 +38,6 @@
 
 #pragma once
 
-#ifndef SENSIRIONI2CSHT4X_H
-#define SENSIRIONI2CSHT4X_H
-
 #include <SensirionErrors.h>
 #include <Wire.h>
 
@@ -400,5 +397,3 @@ class SensirionI2cSht4x {
     TwoWire* _i2cBus = nullptr;
     uint8_t _i2cAddress = 0;
 };
-
-#endif  // SENSIRIONI2CSHT4X_H
