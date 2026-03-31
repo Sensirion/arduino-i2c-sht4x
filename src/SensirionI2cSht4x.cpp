@@ -40,7 +40,7 @@
 #include <SensirionCore.h>
 #include <Arduino.h>
 
-typedef enum {
+enum SHT4xCmdId : uint8_t {
     SHT4X_MEASURE_HIGH_PRECISION_TICKS_CMD_ID = 0xfd,
     SHT4X_MEASURE_MEDIUM_PRECISION_TICKS_CMD_ID = 0xf6,
     SHT4X_MEASURE_LOWEST_PRECISION_TICKS_CMD_ID = 0xe0,
@@ -52,7 +52,7 @@ typedef enum {
     SHT4X_ACTIVATE_LOWEST_HEATER_POWER_SHORT_TICKS_CMD_ID = 0x15,
     SHT4X_SERIAL_NUMBER_CMD_ID = 0x89,
     SHT4X_SOFT_RESET_CMD_ID = 0x94,
-} SHT4xCmdId;
+};
 
 // make sure that we use the proper definition of NO_ERROR
 #ifdef NO_ERROR
@@ -204,7 +204,7 @@ int16_t SensirionI2cSht4x::measureHighPrecisionTicks(uint16_t& temperatureTicks,
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0xfd, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_MEASURE_HIGH_PRECISION_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -228,7 +228,7 @@ SensirionI2cSht4x::measureMediumPrecisionTicks(uint16_t& temperatureTicks,
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0xf6, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_MEASURE_MEDIUM_PRECISION_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -252,7 +252,7 @@ SensirionI2cSht4x::measureLowestPrecisionTicks(uint16_t& temperatureTicks,
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0xe0, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_MEASURE_LOWEST_PRECISION_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -275,7 +275,7 @@ int16_t SensirionI2cSht4x::activateHighestHeaterPowerLongTicks(
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0x39, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_ACTIVATE_HIGHEST_HEATER_POWER_LONG_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -298,7 +298,7 @@ int16_t SensirionI2cSht4x::activateHighestHeaterPowerShortTicks(
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0x32, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_ACTIVATE_HIGHEST_HEATER_POWER_SHORT_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -321,7 +321,7 @@ int16_t SensirionI2cSht4x::activateMediumHeaterPowerLongTicks(
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0x2f, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_ACTIVATE_MEDIUM_HEATER_POWER_LONG_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -344,7 +344,7 @@ int16_t SensirionI2cSht4x::activateMediumHeaterPowerShortTicks(
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0x24, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_ACTIVATE_MEDIUM_HEATER_POWER_SHORT_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -367,7 +367,7 @@ int16_t SensirionI2cSht4x::activateLowestHeaterPowerLongTicks(
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0x1e, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_ACTIVATE_LOWEST_HEATER_POWER_LONG_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -390,7 +390,7 @@ int16_t SensirionI2cSht4x::activateLowestHeaterPowerShortTicks(
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0x15, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_ACTIVATE_LOWEST_HEATER_POWER_SHORT_TICKS_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -412,7 +412,7 @@ int16_t SensirionI2cSht4x::serialNumber(uint32_t& serialNumber) {
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0x89, buffer_ptr, 6);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_SERIAL_NUMBER_CMD_ID, buffer_ptr, 6);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
@@ -433,7 +433,7 @@ int16_t SensirionI2cSht4x::softReset() {
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
     SensirionI2CTxFrame txFrame =
-        SensirionI2CTxFrame::createWithUInt8Command(0x94, buffer_ptr, 2);
+        SensirionI2CTxFrame::createWithUInt8Command(SHT4X_SOFT_RESET_CMD_ID, buffer_ptr, 2);
     localError =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (localError != NO_ERROR) {
