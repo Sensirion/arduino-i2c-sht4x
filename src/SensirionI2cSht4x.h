@@ -38,21 +38,19 @@
 
 #pragma once
 
-#ifndef SENSIRIONI2CSHT4X_H
-#define SENSIRIONI2CSHT4X_H
-
 #include <SensirionErrors.h>
 #include <Wire.h>
 
-static constexpr uint8_t SHT40_I2C_ADDR_44 = 0x44;
-static constexpr uint8_t SHT40_I2C_ADDR_45 = 0x45;
-static constexpr uint8_t SHT41_I2C_ADDR_44 = 0x44;
-static constexpr uint8_t SHT41_I2C_ADDR_45 = 0x45;
-static constexpr uint8_t SHT45_I2C_ADDR_44 = 0x44;
-static constexpr uint8_t SHT45_I2C_ADDR_45 = 0x45;
+constexpr uint8_t SHT40_I2C_ADDR_44 = 0x44;
+constexpr uint8_t SHT40_I2C_ADDR_45 = 0x45;
+constexpr uint8_t SHT41_I2C_ADDR_44 = 0x44;
+constexpr uint8_t SHT41_I2C_ADDR_45 = 0x45;
+constexpr uint8_t SHT45_I2C_ADDR_44 = 0x44;
+constexpr uint8_t SHT45_I2C_ADDR_45 = 0x45;
 
 class SensirionI2cSht4x {
-    typedef typeof(Wire) TwoWire;
+    using TwoWire = decltype(Wire);
+
   public:
     SensirionI2cSht4x();
     /**
@@ -211,10 +209,10 @@ class SensirionI2cSht4x {
      *
      * SHT4x command for a single shot measurement with high repeatability.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -226,10 +224,10 @@ class SensirionI2cSht4x {
      *
      * SHT4x command for a single shot measurement with medium repeatability.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -241,10 +239,10 @@ class SensirionI2cSht4x {
      *
      * SHT4x command for a single shot measurement with lowest repeatability.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -257,10 +255,10 @@ class SensirionI2cSht4x {
      * SHT4x command to activate highest heater power and perform a single shot
      * high precision measurement for 1s.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -273,10 +271,10 @@ class SensirionI2cSht4x {
      * SHT4x command to activate highest heater power and perform a single shot
      * high precision measurement for 0.1s.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -289,10 +287,10 @@ class SensirionI2cSht4x {
      * SHT4x command to activate medium heater power and perform a single shot
      * high precision measurement for 1s.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -305,10 +303,10 @@ class SensirionI2cSht4x {
      * SHT4x command to activate medium heater power and perform a single shot
      * high precision measurement for 0.1s.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by 
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -321,10 +319,10 @@ class SensirionI2cSht4x {
      * SHT4x command to activate lowest heater power and perform a single shot
      * high precision measurement for 1s.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by 
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -337,10 +335,10 @@ class SensirionI2cSht4x {
      * SHT4x command to activate lowest heater power and perform a single shot
      * high precision measurement for 0.1s.
      *
-     * @param[out] temperatureTicks Temperature ticks. Convert to degrees celsius by 
-     * (175 * value / 65535) - 45
-     * @param[out] humidityTicks Humidity ticks. Convert to percent relative humdity by
-     * (125 * value / 65535) - 6
+     * @param[out] temperatureTicks Temperature ticks. Convert to degrees
+     * celsius by (175 * value / 65535) - 45
+     * @param[out] humidityTicks Humidity ticks. Convert to percent relative
+     * humdity by (125 * value / 65535) - 6
      *
      * @return error_code 0 on success, an error code otherwise.
      */
@@ -400,5 +398,3 @@ class SensirionI2cSht4x {
     TwoWire* _i2cBus = nullptr;
     uint8_t _i2cAddress = 0;
 };
-
-#endif  // SENSIRIONI2CSHT4X_H
