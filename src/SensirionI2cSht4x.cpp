@@ -66,17 +66,11 @@ SensirionI2cSht4x::SensirionI2cSht4x() {
 }
 
 float SensirionI2cSht4x::signalTemperature(uint16_t temperatureTicks) {
-    float temperature = 0.0;
-    temperature = (float)(temperatureTicks);
-    temperature = ((temperature * 175.0) / 65535.0) - 45.0;
-    return temperature;
+    return (temperatureTicks * 175.0f / 65535.0f) - 45.0f;
 }
 
 float SensirionI2cSht4x::signalHumidity(uint16_t humidityTicks) {
-    float humidity = 0.0;
-    humidity = (float)(humidityTicks);
-    humidity = ((humidity * 125.0) / 65535.0) - 6.0;
-    return humidity;
+    return (humidityTicks * 125.0f / 65535.0f) - 6.0f;
 }
 
 int16_t SensirionI2cSht4x::measureHighPrecision(float& aTemperature,
