@@ -49,7 +49,7 @@
 SensirionI2cSht4x sensor;
 
 static char errorMessage[64];
-static int16_t error;
+static int16_t sht_error;
 
 void setup() {
 
@@ -63,10 +63,10 @@ void setup() {
     sensor.softReset();
     delay(10);
     uint32_t serialNumber = 0;
-    error = sensor.serialNumber(serialNumber);
-    if (error != NO_ERROR) {
+    sht_error = sensor.serialNumber(serialNumber);
+    if (sht_error != NO_ERROR) {
         Serial.print("Error trying to execute serialNumber(): ");
-        errorToString(error, errorMessage, sizeof errorMessage);
+        errorToString(sht_error, errorMessage, sizeof errorMessage);
         Serial.println(errorMessage);
         return;
     }
@@ -80,10 +80,10 @@ void loop() {
     float aTemperature = 0.0;
     float aHumidity = 0.0;
     delay(20);
-    error = sensor.measureLowestPrecision(aTemperature, aHumidity);
-    if (error != NO_ERROR) {
+    sht_error = sensor.measureLowestPrecision(aTemperature, aHumidity);
+    if (sht_error != NO_ERROR) {
         Serial.print("Error trying to execute measureLowestPrecision(): ");
-        errorToString(error, errorMessage, sizeof errorMessage);
+        errorToString(sht_error, errorMessage, sizeof errorMessage);
         Serial.println(errorMessage);
         return;
     }
